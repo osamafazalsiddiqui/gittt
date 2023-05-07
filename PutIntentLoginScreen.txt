@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/white"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:background="@color/purple_200"
+        android:padding="20dp">
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:gravity="center"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email Address"
+            android:paddingTop="14dp"
+            android:textColor="@color/black"/>
+        <EditText
+            android:id="@+id/txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="example123@gmail.com"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+            android:textSize="14dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:paddingTop="14dp"
+            android:textColor="@color/black"/>
+        <EditText
+            android:id="@+id/txtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:hint="*************"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textSize="14dp"/>
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="20dp"
+     android:orientation="horizontal"
+     android:weightSum="2">
+     <Button
+         android:id="@+id/btnSubmit"
+     android:layout_width="0dp"
+     android:layout_height="50dp"
+     android:text="Submit"
+         android:layout_marginRight="3dp"
+     android:layout_weight="1"/>
+     <Button
+         android:id="@+id/btnRegister"
+         android:layout_width="0dp"
+         android:layout_height="50dp"
+         android:text="Register"
+         android:layout_marginRight="3dp"
+         android:layout_weight="1"/>
+ </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+------------------------------------------
+
+
+package com.example.new_app_7
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val txtEmail = findViewById<EditText>(R.id.txtEmail)
+        val txtPassword = findViewById<EditText>(R.id.txtPassword)
+        val btnSubmit = findViewById<Button>(R.id.btnSubmit)
+        val btnRegister = findViewById<Button>(R.id.btnRegister)
+
+        btnSubmit.setOnClickListener {
+            val Email = txtEmail.text.toString()
+            val Password = txtPassword.text.toString()
+
+            if (Email == "admin" && Password == "admin"){
+
+
+            val intent = Intent(this,AfterLoginActivity::class.java)
+            intent.putExtra("Email", Email)
+            intent.putExtra("Password",Password)
+            startActivity(intent)
+            finish()
+            }
+            else{
+                Toast.makeText(applicationContext, "Email or Password is not match!", Toast.LENGTH_LONG).show()
+            }
+        }
+        btnRegister.setOnClickListener {
+            val intent2 = Intent(this,ListActivity::class.java)
+            startActivity(intent2)
+            finish()
+        }
+    }
+}

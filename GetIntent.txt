@@ -1,0 +1,21 @@
+package com.example.new_app_7
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.TextView
+
+class AfterLoginActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_after_login)
+
+        val txtEmail = findViewById<TextView>(R.id.txtEmail)
+        val txtPassword = findViewById<TextView>(R.id.txtPassword)
+
+        val Email = intent.getStringExtra("Email")
+        val Password = intent.getStringExtra("Password")
+
+        txtEmail.text = Email
+        txtPassword.text = Password
+    }
+}
